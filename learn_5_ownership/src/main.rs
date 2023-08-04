@@ -5,8 +5,6 @@ fn main() {
     test_function_copy();
     test_function_move();
     test_function_move_tuple();
-    test_reference();
-    test_reference_change_value();
 }
 
 fn test_string() {
@@ -78,27 +76,4 @@ fn test_function_move_tuple() {
 fn test_function_2(num: i32, mut str: String) -> (i32, String) {
     str.push_str(" world");
     (num + 100, str)
-}
-
-fn test_reference() {
-    println!("======test_reference======");
-    let str: String = String::from("hello");
-    let len: usize = test_reference_1(&str);
-    println!("str = {}", str);
-    println!("len = {}", len);
-}
-
-fn test_reference_1(str: &String) -> usize {
-    str.len()
-}
-
-fn test_reference_change_value() {
-    println!("======test_reference_change_value======");
-    let mut str: String = String::from("hello");
-    test_reference_2(&mut str);
-    println!("str = {}", str);
-}
-
-fn test_reference_2(str: &mut String) {
-    str.push_str(" world");
 }

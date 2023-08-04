@@ -57,7 +57,7 @@ fn test_data_race() {
 
 fn test_mutiable_reference() {
     println!("======test_mutiable_reference======");
-    let mut str: String = String::from("hello");
+    let str: String = String::from("hello");
     let str_1: &String = &str;
     let str_2: &String = &str;
     // let str_3: &mut String = &mut str; // error[E0502]: cannot borrow `str` as mutable because it is also borrowed as immutable

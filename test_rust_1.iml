@@ -14,6 +14,7 @@
       <sourceFolder url="file://$MODULE_DIR$/learn_8_structs/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/learn_10_enum/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/learn_9_methods/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pratice_1_calculator/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/learn_1_variables/target" />
       <excludeFolder url="file://$MODULE_DIR$/learn_2_data_type/target" />
       <excludeFolder url="file://$MODULE_DIR$/learn_3_function/target" />
@@ -26,6 +27,7 @@
       <excludeFolder url="file://$MODULE_DIR$/learn_8_structs/target" />
       <excludeFolder url="file://$MODULE_DIR$/learn_10_enum/target" />
       <excludeFolder url="file://$MODULE_DIR$/learn_9_methods/target" />
+      <excludeFolder url="file://$MODULE_DIR$/pratice_1_calculator/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,5 +1,6 @@
-use rust_decimal::Decimal;
 use std::str::FromStr;
+
+use rust_decimal::Decimal;
 
 fn main() {
     // decimal_max();

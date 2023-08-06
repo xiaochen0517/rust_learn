@@ -17,6 +17,8 @@
       <sourceFolder url="file://$MODULE_DIR$/pratice_1_calculator/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/learn_11_match/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/learn_12_if_let/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/learn_13_module/learn_library_1/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/learn_13_module/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/learn_1_variables/target" />
       <excludeFolder url="file://$MODULE_DIR$/learn_2_data_type/target" />
       <excludeFolder url="file://$MODULE_DIR$/learn_3_function/target" />
@@ -32,6 +34,8 @@
       <excludeFolder url="file://$MODULE_DIR$/pratice_1_calculator/target" />
       <excludeFolder url="file://$MODULE_DIR$/learn_11_match/target" />
       <excludeFolder url="file://$MODULE_DIR$/learn_12_if_let/target" />
+      <excludeFolder url="file://$MODULE_DIR$/learn_13_module/learn_library_1/target" />
+      <excludeFolder url="file://$MODULE_DIR$/learn_13_module/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

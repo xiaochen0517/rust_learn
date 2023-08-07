@@ -1,16 +1,9 @@
-fn main() {
-    fibonacci_sequence(10);
-}
+use learn_13_module::learn_13_module_func;
+use learn_13_module::tools::str_util;
 
-fn fibonacci_sequence(n: u32) {
-    let mut a: u32 = 0;
-    let mut b: u32 = 1;
-    let mut c: u32;
-    println!("b = {}", b);
-    for _i in 0..n {
-        c = a + b;
-        a = b;
-        b = c;
-        println!("b = {}", b);
-    }
+fn main() {
+    learn_13_module_func();
+    let str: String = String::from("Hello world!");
+    let first_word: &str = str_util::get_first_word(&str);
+    println!("first_word: {}", first_word);
 }

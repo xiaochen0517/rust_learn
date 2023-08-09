@@ -1,5 +1,4 @@
 use std::error::Error;
-use std::ffi::NulError;
 use std::fs::File;
 use std::io;
 use std::io::{ErrorKind, Read};

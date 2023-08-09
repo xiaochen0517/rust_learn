@@ -1,12 +1,19 @@
+use std::error::Error;
+use std::ffi::NulError;
 use std::fs::File;
 use std::io;
 use std::io::{ErrorKind, Read};
+use std::net::IpAddr;
 
-fn main() {
+fn main() -> Result<(), Box<dyn Error>> {
     // use_panic();
     // code_panic();
     // open_file_maybe_error();
     test_read_user_func();
+    test_read_user_func_1();
+    panic_or_not();
+
+    Ok(())
 }
 
 fn use_panic() {
@@ -36,6 +43,7 @@ fn open_file_maybe_error() {
 }
 
 fn test_read_user_func() {
+    println!("====== test_read_user_func ======");
     let username_result = read_user_from_file();
     match username_result {
         Ok(username) => {
@@ -56,4 +64,27 @@ fn read_user_from_file() -> Result<String, io::Error> {
         Ok(_) => Ok(username),
         Err(e) => Err(e),
     }
+}
+
+fn test_read_user_func_1() {
+    println!("====== test_read_user_func_1 ======");
+    let username_result = read_user_from_file_with_symbol();
+    match username_result {
+        Ok(username) => {
+            println!("username: {}", username);
+        }
+        Err(e) => panic!("Problem opening the file: {:?}", e),
+    };
+}
+
+fn read_user_from_file_with_symbol() -> Result<String, io::Error> {
+    let mut username = String::new();
+    File::open("username.txt")?.read_to_string(&mut username)?;
+    Ok(username)
+}
+
+fn panic_or_not() {
+    println!("====== panic_or_not ======");
+    let home: IpAddr = "127.0.0.1".parse().expect("Invalid IP address");
+    println!("home: {:?}", home);
 }

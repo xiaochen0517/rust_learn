@@ -1,8 +1,6 @@
-use crate::add;
-
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::add;
 
     #[test]
     fn test_add() {

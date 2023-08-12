@@ -3,7 +3,6 @@ fn main() {
     none_used_lifetime();
     test_struct_lifetime();
     test_struct_method();
-    test_static_lifetime();
 }
 
 fn test_lifetime() {
@@ -82,8 +81,4 @@ impl MyStruct {
         println!("num: {}", num);
         &self.name
     }
-}
-
-fn test_static_lifetime() {
-    println!("======= test_static_lifetime ======");
 }

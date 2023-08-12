@@ -3,6 +3,7 @@ fn main() {
     none_used_lifetime();
     test_struct_lifetime();
     test_struct_method();
+    test_static_lifetime();
 }
 
 fn test_lifetime() {
@@ -60,11 +61,13 @@ fn test_struct_method() {
         age: 18,
     };
     let name;
+    let test_var;
     {
-        let test_var = 2u8;
+        test_var = 2u8;
         name = struct_instance.get_name(&test_var);
     }
     println!("name: {}", name);
+    println!("test var: {}", test_var);
 }
 
 struct MyStruct {
@@ -73,7 +76,14 @@ struct MyStruct {
 }
 
 impl MyStruct {
-    fn get_name<'a>(&'a self, num: &u8) -> &'a str {
+    fn get_name<'a, 'b>(&'a self, num: &'b u8) -> &'b str
+        where 'a: 'b,
+    {
+        println!("num: {}", num);
         &self.name
     }
+}
+
+fn test_static_lifetime() {
+    println!("======= test_static_lifetime ======");
 }

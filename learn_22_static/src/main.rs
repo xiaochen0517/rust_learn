@@ -11,7 +11,9 @@ fn test_unsafe_get_string() {
         length, pointer, message
     );
     // 如果大家想知道为何处理裸指针需要 `unsafe`，可以试着反注释以下代码
-    let message = get_str_at_location(0x7FF7B9D8E4D8, 12);
+    let usize_pointer: usize = 0x7FF7B9D8E4D8;
+    let usize_length: usize = 12;
+    let message = get_str_at_location(usize_pointer, usize_length);
     println!("message: {}", message);
 }
 

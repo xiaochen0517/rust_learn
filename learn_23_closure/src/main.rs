@@ -119,8 +119,8 @@ fn test_main_closure() {
     let closure = |x| -> i32 { x + num };
     let v1 = closure(1);
     println!("v1: {}", v1);
-    num = 200;
-    println!("num: {}", num);
-    // let v2 = closure(2);
-    // println!("v2: {}", v2);
+    // num = 200; // error[E0384]: cannot assign twice to immutable variable `num`
+    // println!("num: {}", num);
+    let v2 = closure(2);
+    println!("v2: {}", v2);
 }

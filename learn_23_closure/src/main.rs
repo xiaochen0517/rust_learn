@@ -1,8 +1,16 @@
+mod shirt_gift;
+
+use std::thread;
+use crate::shirt_gift::test_shirt_gift;
+
 fn main() {
     test_basic_closure();
     test_struct_cacher_closure();
     test_system_type();
     test_struct_closure();
+    test_shirt_gift();
+    test_multi_threads_closure();
+    test_vec_sort_by_key();
 }
 
 fn test_basic_closure() {
@@ -123,4 +131,35 @@ fn test_main_closure() {
     // println!("num: {}", num);
     let v2 = closure(2);
     println!("v2: {}", v2);
+}
+
+fn test_multi_threads_closure() {
+    println!("====== test_multi_threads_closure ======");
+    let list = vec![1, 2, 3];
+    println!("main threads list: {:?}", list);
+    thread::spawn(move || {
+        println!("children threads list: {:?}", list);
+    }).join().unwrap();
+}
+
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+fn test_vec_sort_by_key() {
+    println!("====== test_vec_sort_by_key ======");
+    let mut list = [
+        Rectangle { width: 10, height: 1 },
+        Rectangle { width: 3, height: 5 },
+        Rectangle { width: 7, height: 12 },
+    ];
+
+    let mut num_sort_operations = 0;
+    list.sort_by_key(|r| {
+        num_sort_operations += 1;
+        r.width
+    });
+    println!("{:#?}, sorted in {num_sort_operations} operations", list);
 }

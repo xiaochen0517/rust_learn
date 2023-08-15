@@ -1,8 +1,14 @@
+mod books;
+mod utils;
+
+use crate::utils::utils_run;
+
 fn main() {
     test_basic_iterator();
     test_map_iterator();
     test_catch_env_closure();
     test_filter_iterator();
+    utils_run();
 }
 
 fn test_basic_iterator() {

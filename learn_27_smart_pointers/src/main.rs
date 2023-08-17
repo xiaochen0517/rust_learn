@@ -1,5 +1,7 @@
 mod cons_list;
 mod my_box;
+mod rc_list;
+mod limit_tracker;
 
 fn main() {
     test_stack_str();
@@ -10,6 +12,7 @@ fn main() {
     my_box::test_cast_type();
     my_box::test_my_box_drop();
     my_box::test_manually_drop();
+    rc_list::test_basic_test_rc();
 }
 
 fn change_str(str: &str) {

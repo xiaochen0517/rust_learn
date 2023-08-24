@@ -44,11 +44,11 @@ fn test_box_var_compare() {
 
 #[derive(Debug)]
 enum List {
-    Cons(Rc<RefCell<i32>>, Rc<List>),
+    Item(Rc<RefCell<i32>>, Rc<List>),
     Nil,
 }
 
-use crate::List::{Cons, Nil};
+use crate::List::{Item, Nil};
 use std::cell::RefCell;
 use std::rc::Rc;
 
@@ -56,11 +56,11 @@ fn test_mutiple_ownership() {
     println!("====== test_mutiple_ownership ======");
     let value = Rc::new(RefCell::new(5));
     let value1 = Rc::new(RefCell::new(123));
-    let a = Rc::new(Cons(Rc::clone(&value),
-                         Rc::new(Cons(Rc::clone(&value1),
+    let a = Rc::new(Item(Rc::clone(&value),
+                         Rc::new(Item(Rc::clone(&value1),
                                       Rc::new(Nil)))));
-    let b = Cons(Rc::new(RefCell::new(3)), Rc::clone(&a));
-    let c = Cons(Rc::new(RefCell::new(4)), Rc::clone(&a));
+    let b = Item(Rc::new(RefCell::new(3)), Rc::clone(&a));
+    let c = Item(Rc::new(RefCell::new(4)), Rc::clone(&a));
     println!("------ no change ------");
     println!("a after = {:?}", a);
     println!("b after = {:?}", b);
@@ -73,16 +73,11 @@ fn test_mutiple_ownership() {
     println!("c after = {:?}", c);
 
     println!("------ change again ------");
-    if let List::Cons(_, ref next) = *a {
-        if let List::Cons(_, ref next2) = **next {
-            let new_list = Rc::new(List::Cons(Rc::clone(&value), Rc::clone(next2)));
-        }
-    }
 
     match *a {
-        Cons(ref value, ref next) => {
+        Item(ref value, ref next) => {
             match *next.clone() {
-                Cons(ref value1, ref next1) => {
+                Item(ref value1, ref next1) => {
                     *value1.borrow_mut() += 10;
                 }
                 Nil => println!("End of list ..."),

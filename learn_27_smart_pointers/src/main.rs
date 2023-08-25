@@ -2,6 +2,7 @@ mod cons_list;
 mod my_box;
 mod rc_list;
 mod limit_tracker;
+mod node_list;
 
 fn main() {
     test_stack_str();
@@ -75,9 +76,9 @@ fn test_mutiple_ownership() {
     println!("------ change again ------");
 
     match *a {
-        Item(ref value, ref next) => {
+        Item(ref _value, ref next) => {
             match *next.clone() {
-                Item(ref value1, ref next1) => {
+                Item(ref value1, ref _next1) => {
                     *value1.borrow_mut() += 10;
                 }
                 Nil => println!("End of list ..."),

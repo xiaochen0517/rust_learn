@@ -1,3 +1,4 @@
+use std::sync::mpsc;
 use std::thread;
 use std::time::Duration;
 
@@ -27,6 +28,18 @@ fn sub_thread_move() {
     sub_thread.join().unwrap();
 }
 
+fn sub_thread_channel() {
+    println!("====== test_sub_thread_channel ======");
+    let (tx, rx) = mpsc::channel();
+    let sub_thread = thread::spawn(move || {
+        let val = String::from("hi");
+        tx.send(val).unwrap();
+    });
+    let received = rx.recv().unwrap();
+    println!("Got: {}", received);
+    sub_thread.join().unwrap();
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -39,5 +52,10 @@ mod tests {
     #[test]
     fn test_sub_thread_move() {
         sub_thread_move();
+    }
+
+    #[test]
+    fn test_sub_thread_channel() {
+        sub_thread_channel();
     }
 }

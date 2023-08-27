@@ -40,6 +40,28 @@ fn sub_thread_channel() {
     sub_thread.join().unwrap();
 }
 
+pub fn send_multiple_message() {
+    println!("====== test_send_multiple_message ======");
+    let (tx, rx) = mpsc::channel();
+    let sub_thread = thread::spawn(move || {
+        let vals = vec![
+            String::from("hi"),
+            String::from("from"),
+            String::from("the"),
+            String::from("sub"),
+            String::from("thread"),
+        ];
+        for val in vals {
+            tx.send(val).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+
+    for received in rx {
+        println!("Got: {}", received);
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

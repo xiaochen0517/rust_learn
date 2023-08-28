@@ -62,6 +62,41 @@ pub fn send_multiple_message() {
     }
 }
 
+pub fn multiple_send_message() {
+    println!("====== test_multiple_send_message ======");
+    let (tx, rx) = mpsc::channel();
+    let tx1 = tx.clone();
+    let sub_thread_1 = thread::spawn(move || {
+        let vals = vec![
+            String::from("sub_thread_1 1"),
+            String::from("sub_thread_1 2"),
+            String::from("sub_thread_1 3"),
+            String::from("sub_thread_1 4"),
+            String::from("sub_thread_1 5"),
+        ];
+        for val in vals {
+            tx.send(val).unwrap();
+            thread::sleep(Duration::from_millis(700));
+        }
+    });
+    let sub_thread_2 = thread::spawn(move || {
+        let vals = vec![
+            String::from("sub_thread_2 1"),
+            String::from("sub_thread_2 2"),
+            String::from("sub_thread_2 3"),
+            String::from("sub_thread_2 4"),
+            String::from("sub_thread_2 5"),
+        ];
+        for val in vals {
+            tx1.send(val).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+    for received in rx {
+        println!("Got: {}", received);
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -12,6 +12,7 @@ fn main() {
     test_averaged_collection();
     test_draw();
     test_while_let();
+    test_range();
 }
 
 fn test_averaged_collection() {
@@ -48,13 +49,24 @@ fn test_draw() {
 
 fn test_while_let() {
     println!("====== test_while_let ======");
-    let mut arr = vec![
+    let mut arr: Vec<Option<i32>> = vec![
         Some(1),
         None,
         Some(2),
         Some(3),
     ];
-    while let Some(value) = arr.pop() {
+    while let Some(Some(value)) = arr.pop() {
         println!("value = {:?}", value);
+    }
+}
+
+fn test_range() {
+    println!("====== test_range ======");
+    for index in 0..=5 {
+        println!("index = {}", index);
+    }
+    println!("----- none five ------");
+    for index in 0..5 {
+        println!("index = {}", index);
     }
 }

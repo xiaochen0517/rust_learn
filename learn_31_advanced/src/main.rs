@@ -3,6 +3,8 @@ use std::slice;
 fn main() {
     test_bare_pointer();
     test_unsafe_split();
+    test_basic_macro();
+    test_vec_macro();
 }
 
 fn test_bare_pointer() {
@@ -52,4 +54,35 @@ fn test_unsafe_split() {
 
     println!("arr_1 => {:?}", arr_1);
     println!("arr_1 => {:?}", arr_2);
+}
+
+macro_rules! bouble {
+    ($x:expr) => {
+        2*$x
+    };
+}
+
+fn test_basic_macro() {
+    println!("====== test_basic_macro ======");
+    let x = 5;
+    let y = bouble!(x);
+    println!("y = {}", y);
+}
+
+macro_rules! mvec {
+    ($($x:expr),*) => {
+        {
+            let mut temp_vec = Vec::new();
+            $(
+                temp_vec.push($x);
+            )*
+            temp_vec
+        }
+    };
+}
+
+fn test_vec_macro() {
+    println!("====== test_vec_macro ======");
+    let v = mvec![1, 2, 3, 4, 5];
+    println!("v = {:?}", v);
 }
